@@ -1,3 +1,5 @@
+A sortable and filterable table of tasks built with Angular Material and NgRx
+
 # Tasks
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.10.
