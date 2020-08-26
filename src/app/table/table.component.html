@@ -1,0 +1,33 @@
+<mat-table [dataSource]="rows" class="mat-elevation-z8" cdkDropListGroup matSort>
+  <ng-container *ngFor="let column of columns; let i = index" [matColumnDef]="column.field">
+    <mat-header-cell *matHeaderCellDef
+      class="task-header-cel"
+      cdkDropList
+      cdkDropListLockAxis="x"
+      cdkDropListOrientation="horizontal"
+      (cdkDropListDropped)="drop($event, i)"
+      cdkDrag
+      (cdkDragStarted)="drag($event, i)"
+      [cdkDragData]="{name: column.field, columIndex: i}">
+
+      <div class="task-header-sort">
+        <span   mat-sort-header>
+          {{ column.field }}
+        </span> 
+      </div>
+
+      <div class="task-header-filter">
+        <mat-form-field >
+          <input matInput [formControl]="filters[column.field].control" placeholder="search"/>
+        </mat-form-field>
+      </div>
+
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row" > {{ row[column.field] }}  </mat-cell>
+  </ng-container>
+  <mat-header-row *matHeaderRowDef="columnNames"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: columnNames;"></mat-row>
+
+
+
+</mat-table>
